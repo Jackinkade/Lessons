@@ -1,0 +1,24 @@
+@keyframes spinner{
+  100%{
+    transform: rotate(3600deg);
+  }
+}
+.container{
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: 50vh;
+  transform: translateY(-50%);
+}
+.spinner{
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  background: url(http://i.imgur.com/oSHLAzp.png) center center;
+  background-size: contain;
+  -webkit-background-size: contain;
+  transform-origin: 50% 50% ;
+  animation: spinner 8.3s infinite alternate ease-in-out;          /*начало анимации*/
+
+}
+
