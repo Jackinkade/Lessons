@@ -22,6 +22,7 @@ console.log('Длина строки "addExpenses" равно:'
   + addExpenses.length);
 console.log("Период равен " + period + " месяцев. " + 
   "\nЦель заработать " + mission + " рублей" );
+console.log(addExpenses.toLowerCase().split(', '));
 
 console.log("Бюджет на день " + Math.floor(budgetDay) + "тенге");
 console.log("Месячный бюджет", budgetDay);
