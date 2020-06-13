@@ -9,8 +9,8 @@ let expenses1 = prompt("Введите обязательную статью р�
     expenses2 = prompt("Введите обязательную статью расходов", "налог");
     amount2 = +prompt("Во сколько это обойдется", 10000);
 
-let showTypeOf = function (i) {
-  console.log(typeof i);
+let showTypeOf = function (items) {
+  console.log(typeof items);
 };
 showTypeOf(money);
 showTypeOf(income);
@@ -41,14 +41,13 @@ console.log('Длина строки "addExpenses" равно:'
   + addExpenses.length);
 
 console.log(addExpenses.toLowerCase().split(', '));
-1200
+
 
 
 let getStatusIncome = function(){
-  return;
+  return money-(amount1+amount2);
 }
 getStatusIncome();
-
 
 
 
