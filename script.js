@@ -20,7 +20,7 @@ let start = function () {
     do {
         money = prompt('Ваш месячный доход?', '');
     }
-    while (isNan(money) || money === "" || money === null);
+    while (!isNumber(money));
 };
 start();
 
