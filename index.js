@@ -26,9 +26,9 @@ let getAccumulatedMonth = function(a, b){
   return a - b;
 };
 
-console.log("Накопления за месяц " + getAccumulatedMonth(money, getExpensesMonth(amount2 + amount1)));
+console.log("Накопления за месяц " + getAccumulatedMonth(money, getExpensesMonth(amount2, amount1)));
 
-let accumulatedMonth = getAccumulatedMonth(money, getExpensesMonth(amount2 + amount1));
+let accumulatedMonth = getAccumulatedMonth(money, getExpensesMonth(amount2, amount1));
 
 let getTargetMonth = function(x, y){
   return Math.floor(x / y);
@@ -45,16 +45,16 @@ console.log('Длина строки "addExpenses" равно:'
 
 console.log(addExpenses.toLowerCase().split(', '));
 
-let getStatusIncome = function(budgetDay){
+let getStatusIncome = function(budget){
  
-    if (budgetDay >= 1200){
+    if (budget >= 1200){
       console.log("У вас высокий уровень дохода");
-    }else if (budgetDay >600){
+    }else if (budget >600){
       console.log("У вас средний уровень дохода");
-    }else if (budgetDay <= 600 || budgetDay >1){
+    }else if (budget <= 600 || budget >1){
       console.log("К сожалению у вас уровень дохода ниже среднего");
-    }else if (budgetDay ===0 || budgetDay <0){
+    }else if (budget ===0 || budget <0){
       console.log("Что то пошло не так");
     }
     };
-getStatusIncome(budgetDay);
+getStatusIncome(budgetDay(accumulatedMonth));
