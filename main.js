@@ -1,5 +1,4 @@
 'use strict';
-
 let isNumber = function (n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
@@ -9,19 +8,13 @@ start = function () {
   do{
     money = prompt("Ваш месячный доход", "");
   }while (!isNumber(money));
-    
+    if (money < 0){
+      return start();
+    }
 };
 start();
 
-let allinformation = function () {
-    for(let key in appData) {
-      console.log(
-        "Наша программа включает в себя данные:",
-        key,
-        appData[key]
-      );
-      }
-};
+
 
 /*let income = "Продажа самогона";
 let addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", "кредит, курсы");
@@ -34,7 +27,7 @@ let expenses1 = prompt("Введите обязательную статью р�
     amount2 = +prompt("Во сколько это обойдется", 10000);*/
 
 let appData = {
-  budget: money,
+  budget:  money,
   budgetDay: 0,
 	budgetMonth: 0,
   expensesMonth: 0,
@@ -44,7 +37,7 @@ let appData = {
       expenses: {},
       addExpenses: [],
       deposit: true,
-      
+       
       getExpensesMonth : function (){
           let sum = 0;
             for (let key in appData.expenses) {
@@ -53,14 +46,15 @@ let appData = {
 		return sum;
       },
        getStatusIncome : function(){
- 	
-    if (appData.budget >= 1200){
+   
+    
+    if (appData.budgetDay >= 1200){
       console.log("У вас высокий уровень дохода");
-    }else if (appData.budget >600){
+    }else if (appData.budgetDay >600){
       console.log("У вас средний уровень дохода");
-    }else if (appData.budget <= 600 || appData.budget >1){
+    }else if (appData.budgetDay <= 600 || appData.budgetDay >1){
       console.log("К сожалению у вас уровень дохода ниже среднего");
-    }else if (appData.budget ===0 || appData.budget <0){
+    }else if (appData.budgetDay ===0 || appData.budgetDay <0){
       console.log("Что то пошло не так");
     }
     },
@@ -69,10 +63,15 @@ let appData = {
       getBudget : function(a, b){
         appData.budgetDay = Math.floor(appData.budgetMonth / 30);
         appData.budgetMonth = appData.budget - appData.getExpensesMonth();
-	        	return appData.budgetMonth;
+        if(this.budgetDay && this.budgetMonth <= 0){
+           this.budgetDay =0;
+          this.budgetMonth = 0;
+    
+        }
+	        
     },
     //accumulatedMonth : getAccumulatedMonth(money, getExpensesMonth(amount2, amount1)),
-
+  
       getTargetMonth : function(){
     
         let splitNumber = Math.ceil(appData.mission / appData.getBudget());
@@ -90,30 +89,46 @@ asking: function () {
 		} while (addExpenses === null);
 
 		appData.addExpenses = addExpenses.toLowerCase().split(', ');
-		appData.deposit = confirm('Есть ли у вас депозит в банке?');
+    appData.deposit = confirm('Есть ли у вас депозит в банке?');
+    
+    
 
 
-		let n, m;
+		let question, qanswer;
       for (let i = 0; i < 2; i++) {
         do {
-          n = prompt('Введите обязательную статью расходов через запятую');
-        } while(n === null);
-            m = +prompt('Во сколько это обойдется?', "10000");
-          while(!isNumber(m) || m === 0) 
+          question = prompt('Введите обязательную статью расходов через запятую');
+        } while(question === null);
+            qanswer = +prompt('Во сколько это обойдется?', "10000");
+          while(!isNumber(qanswer) || qanswer === 0) 
           {
-            m = +prompt('Во сколько это обойдется?', "10000");
+            qanswer = +prompt('Во сколько это обойдется?', "10000");
         }
-        appData.expenses[n] = m;
+        appData.expenses[question] = qanswer;
       }
       while(Object.keys(appData.expenses).length === 1) {
         alert('Новые расходы');
-        n = prompt('Введите обязательную статью расходов через запятую');
-        m = +prompt('Во сколько это обойдется?', "10000");
-        appData.expenses[n] = m;
+        question = prompt('Введите обязательную статью расходов через запятую');
+        qanswer = +prompt('Во сколько это обойдется?', "10000");
+        appData.expenses[question] = qanswer;
 		}
-	},
+  },
+  
     
  
+};
+
+let allinformation = function () {
+    for(let key in appData) {
+      console.log(
+        "Наша программа включает в себя данные:",
+        key,
+        appData[key]
+      );
+     
+    
+      
+      }
 };
 
 appData.asking();
