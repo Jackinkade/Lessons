@@ -15,7 +15,7 @@ color1.addEventListener("change", syncColors);
 
 
 let isNumber = function (n) {
-  return isNaN(parseFloat(n)) && isFinite(n);
+  return !isNaN(parseFloat(n)) && isFinite(n) && n !=="" && n !== null;
 };
 
 
@@ -23,7 +23,7 @@ let money,
 start = function () {
   do{
     money = +prompt("Ваш месячный доход", "100000");
-  }while (isNumber(money));
+  }while (!isNumber(money));
     if (money < 0){
       return start();
     }
@@ -66,14 +66,14 @@ let appData = {
           ); // не работает typeof itemIncome === "string"
          do{ 
             cashIncome = prompt("Сколко в месяц зарабатываете на этом?", "30000");
-        }while(isNumber(cashIncome));// нужно только это 
+        }while(!isNumber(cashIncome));// нужно только это 
 
           appData.income[itemIncome] = cashIncome;
         }
 
      
         let addExpenses = (prompt("Перечислите возможные расходы через запятую")).trim();
-      while(isNumber(addExpenses)){
+      while(!isNumber(addExpenses)){
      addExpenses = (prompt("Перечислите возможные расходы через запятую")).trim();
       }
     appData.addExpenses = addExpenses.toLowerCase().split(', ');
@@ -88,7 +88,7 @@ let appData = {
     do {
       cashExpenses = prompt("Во сколько это обойдется", 10000);
     }
-    while (isNumber(cashExpenses) || cashExpenses === "" || cashExpenses === null);
+    while (!isNumber(cashExpenses) || cashExpenses === "" || cashExpenses === null);
     appData.expenses[itemExpenses] = +cashExpenses;
        }
      
@@ -133,10 +133,10 @@ let appData = {
         do{        
             appData.moneyDeposit = +prompt("Какая сумма заложена", 10000);
        // }while(isNumber(appData.percentDeposit) && isNumber(appData.moneyDeposit));
-        }while(isNumber(appData.moneyDeposit));
+        }while(!isNumber(appData.moneyDeposit));
         do{
             appData.percentDeposit = +prompt('Какой процент?', 10);
-        }while (isNumber(appData.percentDeposit));
+        }while (!isNumber(appData.percentDeposit));
       }
     },
     
@@ -147,7 +147,7 @@ let appData = {
  
       calcSavedMoney: function(){
        do{ return appData.budgetMonth * appData.period;
-      }while(isNumber(appData.budgetMonth) && isNumber(appData.period));
+      }while(!isNumber(appData.budgetMonth) && !isNumber(appData.period));
     }
 };
 let allinformation = function () {
@@ -160,7 +160,7 @@ let allinformation = function () {
   }
   
 };
-
+console.log("aaaa", appData.addExpenses);
 
 
 
@@ -179,8 +179,4 @@ if (appData.getTargetMonth() < 0) {
     console.log('Цель будет достигнута за: ' + Math.ceil(appData.getTargetMonth()) + ' месяцев');
 }
 allinformation();
-let newArr = [];
-for (let item of appData.addExpenses){
-  newArr.push(item[0].toUpperCase() + item.slice(1));
-}
-console.log(newArr.join(", "));
+
