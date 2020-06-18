@@ -160,7 +160,7 @@ let allinformation = function () {
   }
   
 };
-console.log("aaaa", appData.addExpenses);
+
 
 
 
@@ -179,3 +179,8 @@ if (appData.getTargetMonth() < 0) {
     console.log('Цель будет достигнута за: ' + Math.ceil(appData.getTargetMonth()) + ' месяцев');
 }
 allinformation();
+let newArr = [];
+for (let item of appData.addExpenses){
+  newArr.push(item[0].toUpperCase() + item.slice(1));
+}
+console.log(newArr.join(", "));
