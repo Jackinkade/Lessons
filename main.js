@@ -64,7 +64,7 @@ let appData = {
         }
 
      
-        let addExpenses = (prompt("Перечислите возможные расходы через запятую")).trim();
+        let addExpenses = (prompt("Перечислите возможные расходы через запятую", "Кино, игры")).trim();
       while(isNumber(addExpenses)){
      addExpenses = (prompt("Перечислите возможные расходы через запятую")).trim();
       }
@@ -172,5 +172,11 @@ if (appData.getTargetMonth() < 0) {
 }else {
     console.log('Цель будет достигнута за: ' + Math.ceil(appData.getTargetMonth()) + ' месяцев');
 }
+let newArr = [];
+for (let item of appData.addExpenses){
+  newArr.push(item[0].toUpperCase() + item.slice(1));
+}
+console.log(appData.addExpenses)
+console.log("addExpenses in line: "+ newArr.join(", "));
 allinformation();
 
