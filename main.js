@@ -32,15 +32,7 @@ start();
 
 
 
-/*let income = "Продажа самогона";
-let addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую", "кредит, курсы");
-let deposit = confirm("Есть ли у вас депозит в банке?");
-let mission = 500000;
 
-let expenses1 = prompt("Введите обязательную статью расходов", "кредит"),
-    amount1 = +prompt("Во сколько это обойдется", 10000),
-    expenses2 = prompt("Введите обязательную статью расходов", "налог"),
-    amount2 = +prompt("Во сколько это обойдется", 10000);*/
 
 let appData = {
   budget:  money,
@@ -73,7 +65,7 @@ let appData = {
 
      
         let addExpenses = (prompt("Перечислите возможные расходы через запятую")).trim();
-      while(!isNumber(addExpenses)){
+      while(isNumber(addExpenses)){
      addExpenses = (prompt("Перечислите возможные расходы через запятую")).trim();
       }
     appData.addExpenses = addExpenses.toLowerCase().split(', ');
@@ -82,9 +74,11 @@ let appData = {
 
 
       for (let i = 0; i < 2; i++) {
-      
+        let itemExpenses;
+    do{
       let itemExpenses = prompt("Введите обязательную статью расходов","Прогулки с друзьями");
-    let cashExpenses;
+    }while(itemExpenses === "" || itemExpenses === null);
+      let cashExpenses;
     do {
       cashExpenses = prompt("Во сколько это обойдется", 10000);
     }
