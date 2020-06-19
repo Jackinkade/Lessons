@@ -176,7 +176,7 @@ let newArr = [];
 for (let item of appData.addExpenses){
   newArr.push(item[0].toUpperCase() + item.slice(1));
 }
-console.log(appData.addExpenses)
+
 console.log("addExpenses in line: "+ newArr.join(", "));
 allinformation();
 
