@@ -91,6 +91,7 @@ let appData = {
             }
           });
       },
+      
       	getPeriod: function () {
 		periodAmount.value = periodSelect.value;
 		periodAmount.textContent = periodSelect.value;
@@ -189,26 +190,14 @@ let appData = {
             }
           },
 
-    // getInfoDeposite: function(){
-
-    //   if(appData.deposit){
-    //     do{        
-    //       appData.moneyDeposit = +prompt("Какая сумма заложена", 10000);
-    //    // }while(isNumber(appData.percentDeposit) && isNumber(appData.moneyDeposit));
-    //     }while (!isNumber(appData.moneyDeposit));
-
-    //     do{
-    //       appData.percentDeposit = +prompt('Какой процент?', 10);
-    //     }while (!isNumber(appData.percentDeposit));
-    //   }
-    // },
+  
     calcPeriod: function () {
       return appData.budgetMonth * periodSelect.value;
     },
 
     calcSavedMoney: function(){
       
-       return appData.budgetMonth * appData.period;
+       return appData.budgetMonth * periodSelect.value;
     }
 };
 
@@ -222,35 +211,14 @@ let allinformation = function () {
   }
   
 };
-periodAmount.addEventListener("input", function(event){
-  periodSelect.textContent = event.target.value;
+
+periodSelect.addEventListener("input", function(event){
+  periodAmount.textContent = periodSelect.value;
+  
 });
+
+
+
 start.addEventListener('click', appData.start);
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
-incomeAdd.addEventListener('click', appData.addIncomeBlock);
-
-// appData.asking();
-// appData.getInfoDeposite();
-// appData.calcSavedMoney();
-// appData.getBudget();
-// appData.getExpensesMonth();
-
-
-// if (appData.getTargetMonth() < 0) {
-//     console.log('Цель не будет достигнута');
-// }else {
-//     console.log('Цель будет достигнута за: ' + Math.ceil(appData.getTargetMonth()) + ' месяцев');
-// }
-
-// let newArr = [];
-// for (let item of appData.addExpenses){
-//   newArr.push(item[0].toUpperCase() + item.slice(1));
-// }
-
-//console.log("addExpenses in line: "+ newArr.join(", "));
-//allinformation();
-
-
-
-
-
+i
