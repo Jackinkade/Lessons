@@ -37,7 +37,7 @@ let start = document.getElementById("start"),
 let appData = {
   budget: 0,//switched to 0 from money
   budgetDay: 0,
-	budgetMonth: 0,
+  budgetMonth: 0,
   expensesMonth: 0,
   incomeMonth: 0,
   period: 4,
@@ -62,7 +62,7 @@ let appData = {
             appData.getExpensesMonth();
             appData.getAddExpenses();
             appData.getAddIncome();
-      
+            appData.getTargetMonth();
             appData.getBudget();
             appData.showResult();
           },
