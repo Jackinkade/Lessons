@@ -150,14 +150,13 @@ let appData = {
 			incomeAdd.style.display = 'none';
 		}
 	},
-      getIncomeMonth: function () {
-		let sum = 0;
-		for (let key in appData.income) {
-			sum += +appData.income[key];
-		}
-		return sum;
-	},
-
+        getIncomeMonth: function () {
+        let sum = 0;
+        for (let key in appData.income) {
+            sum += +appData.income[key];
+        }
+        return sum;
+    },
       getIncome: function () {
      incomeItem.forEach(function (item) {
 		
@@ -172,14 +171,14 @@ let appData = {
   },
        
     getExpensesMonth : function (){
-    
+   
         for (let key in appData.expenses) {
-            appData.expensesMonth = +appData.expenses[key];// был +
+            appData.expensesMonth += +appData.expenses[key];// был +
           }
          },
-       
+      
     getBudget : function(){
-        appData.budgetMonth = appData.budget + appData.getIncomeMonth() - appData.getExpensesMonth(); 
+        appData.budgetMonth = appData.budget + appData.getIncomeMonth - appData.getExpensesMonth; 
         appData.budgetDay = Math.floor(appData.budgetMonth / 30);
         if(!isNumber(appData.budget)){
          return alert("Введите число");
@@ -232,6 +231,7 @@ periodSelect.addEventListener("input", function(event){
 start.addEventListener('click', appData.start);
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
 incomeAdd.addEventListener('click', appData.addIncomeBlock);
+
 
 
 
