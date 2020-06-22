@@ -155,7 +155,7 @@ let appData = {
         for (let key in appData.income) {
             sum += +appData.income[key];
         }
-        return appData.getIncomeMonth;;
+        return appData.getIncomeMonth;
     },
       getIncome: function () {
      incomeItem.forEach(function (item) {
