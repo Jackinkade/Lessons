@@ -67,8 +67,9 @@ let appData = {
          monthAmmountValue : function(){
 
              if(salaryAmount.value === "") {
+		      start.disabled = true;
             alert("Ошибка, поле'Месячный доход' должно быть заполнено");
-            start.disabled = true;
+           
             return;
             //  }else if(isNumber(salaryAmount.value)){
             //     alert("Введите число");
