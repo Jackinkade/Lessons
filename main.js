@@ -191,10 +191,9 @@ let appData = {
       calcSavedMoney: function(){
       
         return this.budgetMonth * periodSelect.value;
-         }
-      };
-         let	reset = function(){
-		let deleteText = document.querySelectorAll('[type=text]');
+         },
+           	reset : function(){
+		let deleteText = document.querySelectorAll("[type=text]");
 		    deleteText.forEach(function(items){
          items.disabled = false;
           items.value = '';
@@ -204,7 +203,9 @@ let appData = {
     cancel.style.display = 'none';
     
     start.disabled = true;
-         };
+    } 
+      };
+       
   let startBind = function() {  
     appData.start();
       };
@@ -224,7 +225,7 @@ periodSelect.addEventListener("input", function(event){
 
   
 start.addEventListener('click', startBind.bind(appData));
-// cancel.addEventListener('click', function() {
+// cancel.addEventListener('click', function() {    //jquery $
 //     (appData).closest(appData).find('input[type=text]').remove('');
 // });
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
