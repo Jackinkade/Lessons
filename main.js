@@ -195,12 +195,13 @@ let appData = {
            	reset : function(){
 		let deleteText = document.querySelectorAll("[type=text]");
 		    deleteText.forEach(function(items){
-         items.disabled = false;
-          items.value = '';
+			    items.value = "";
+                            items.disabled = false;
+
      });
      
-		start.style.display = 'none';
-    cancel.style.display = 'none';
+		start.style.display = "";
+    cancel.style.display = "";
     
     start.disabled = true;
     } 
