@@ -199,6 +199,30 @@ let appData = {
                             items.disabled = false;
 
      });
+			  return this.budgetMonth * periodSelect.value;
+         },
+           	reset : function(){
+		let deleteText = document.querySelectorAll("[type=text]");
+		    deleteText.forEach(function(items){
+          
+          
+
+         items.disabled = false;
+          items.value = '';
+     });
+     budgetDayValue.disabled = true;//Запрещает пользователью редактировать данные 
+        budgetMonthValue.disabled = true;//а то кнопка не будет "Расчитать" работать 
+        expensesMonthValue.disabled = true;
+        additionalIncomeValue.disabled = true;
+        additionalExpensesValue.disabled = true;
+        incomePeriodValue.disabled = true;
+        targetMonthValue.disabled = true;
+		start.style.display = '';
+    cancel.style.display = '';
+    
+    start.disabled = true;
+    } 
+      };
      
 		start.style.display = "";
     cancel.style.display = "";
