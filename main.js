@@ -81,7 +81,19 @@ let appData = {
           targetMonthValue.value = this.getTargetMonth();
           incomePeriodValue.value = this.calcSavedMoney();
            },
-
+	addIncomeBlock: function(){
+               let cloneExpensesItem = incomeItem[0].cloneNode(true);
+          let cloneExpensesItem2 = cloneExpensesItem.children;
+          for (let i =0; i < cloneExpensesItem2.length; i++){
+            cloneExpensesItem2[i].value = "";
+          }
+            incomeItem[0].parentNode.insertBefore(cloneExpensesItem, incomeAdd);
+            incomeItem = document.querySelectorAll(".income-items");
+            
+            if(incomeItem.length === 3){
+              incomeAdd.style.display = "none";   
+            }
+          },
       addExpensesBlock: function () {//
           let cloneExpensesItem = expensesItems[0].cloneNode(true);
           let cloneExpensesItem2 = cloneExpensesItem.children;
