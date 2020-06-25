@@ -201,7 +201,20 @@ const AppData =  function() {
     start.disabled = true;
     
       };
-     
+     AppData.prototype.eventListeners = function(){
+let startBind = function() {  
+    this.start();
+      };
+start.addEventListener('click', startBind.bind(appData));
+expensesAdd.addEventListener('click', appData.addExpensesBlock);
+incomeAdd.addEventListener('click', appData.addIncomeBlock);
+periodSelect.addEventListener('input', appData.getPeriod);
+salaryAmount.addEventListener('input', appData.monthAmmountValue);
+cancel.addEventListener('click', appData.reset(appData));
+periodSelect.addEventListener("input", function(event){
+    periodAmount.textContent = periodSelect.value;
+     });
+     };
      
        const appData = new AppData(); 
  console.log(AppData);      
@@ -212,13 +225,5 @@ const AppData =  function() {
 
 
 
-start.addEventListener('click', startBind.bind(appData));
-expensesAdd.addEventListener('click', appData.addExpensesBlock);
-incomeAdd.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', appData.getPeriod);
-salaryAmount.addEventListener('input', appData.monthAmmountValue);
-cancel.addEventListener('click', appData.reset(appData));
-periodSelect.addEventListener("input", function(event){
-    periodAmount.textContent = periodSelect.value;
-     });
+
  
