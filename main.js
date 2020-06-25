@@ -93,22 +93,24 @@ let appData = {
           },
       
       getExpenses: function () {//
+        const _this = this;
          expensesItems.forEach(function(items)  {
            let itemExpenses = items.querySelector('.expenses-title').value;
            let cashExpenses = items.querySelector('.expenses-amount').value;
               if(itemExpenses !== "" && cashExpenses !== ""){
-                appData.expenses[itemExpenses] = +cashExpenses;
+                _this.expenses[itemExpenses] = +cashExpenses;
                 }
               } );
           },
 
       getIncome: function () {
+        const _this = this;
         incomeItem.forEach(function (item) {
         let itemIncome = item.querySelector('.income-title').value;
         let cashIncome = item.querySelector('.income-amount').value;
 
           if (itemIncome !== '' && cashIncome !== '') {
-            appData.income[itemIncome] = +cashIncome;
+            _this.income[itemIncome] = +cashIncome;
             }
           });
         },
@@ -122,23 +124,23 @@ let appData = {
           },
 
       getAddIncome: function () {
-
+        const _this = this;
             additionalIncomeItem.forEach(function(item){
               let itemValue = item.value.trim();
               if(itemValue !== ""){
-                appData.addIncome.push(itemValue);
+                _this.addIncome.push(itemValue);
               }
             });
           },
 
       getAddExpenses: function () {
-
+const _this = this;
           let addExpenses = additionalExpensesItem.value.split(", ");
           addExpenses.forEach(function (item) {
 
             item = item.trim();
             if(item !== ""){
-              appData.addExpenses.push(item);
+              _this.addExpenses.push(item);
               }
             });
         },
@@ -155,7 +157,7 @@ let appData = {
       getBudget : function() {
         this.budgetMonth = this.budget + this.getIncomeMonth() - this.getExpensesMonth(); 
         this.budgetDay = Math.floor(appData.budgetMonth / 30);
-          return this.budgetMonth;
+          return appData.budgetMonth;
          },
              
       getPeriod: function () {
