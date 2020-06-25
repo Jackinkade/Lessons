@@ -153,9 +153,9 @@ let appData = {
             },
       
       getBudget : function() {
-        appData.budgetMonth = this.budget + this.getIncomeMonth() - this.getExpensesMonth(); 
-        appData.budgetDay = Math.floor(appData.budgetMonth / 30);
-          return appData.budgetMonth;
+        this.budgetMonth = this.budget + this.getIncomeMonth() - this.getExpensesMonth(); 
+        this.budgetDay = Math.floor(appData.budgetMonth / 30);
+          return this.budgetMonth;
          },
              
       getPeriod: function () {
@@ -197,7 +197,7 @@ let appData = {
       
        
   let startBind = function() {  
-    appData.start();
+    this.start();
       };
    
 periodSelect.addEventListener("input", function(event){
