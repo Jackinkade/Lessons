@@ -84,6 +84,10 @@ let appData = {
 
       addExpensesBlock: function () {//
           let cloneExpensesItem = expensesItems[0].cloneNode(true);
+          let cloneExpensesItem2 = cloneExpensesItem.children;
+          for (let i =0; i < cloneExpensesItem2.length; i++){
+            cloneExpensesItem2[i].value = "";
+          }
             expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesAdd);
             expensesItems = document.querySelectorAll(".expenses-items");
             
@@ -178,8 +182,9 @@ const _this = this;
         let deleteText = document.querySelectorAll("[type=text]");
             deleteText.forEach(function(items){
           
-          
-
+          depositCheck.checked = false;
+          periodAmount.textContent = "1";
+          periodSelect.value = "1";
          items.disabled = false;
           items.value = '';
      });
