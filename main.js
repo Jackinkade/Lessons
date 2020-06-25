@@ -218,9 +218,7 @@ periodSelect.addEventListener("input", function(event){
      
        const appData = new AppData(); 
  console.log(AppData);      
-  let startBind = function() {  
-    this.start();
-      };
+ 
    
 
 
