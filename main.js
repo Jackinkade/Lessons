@@ -190,27 +190,26 @@ AppData.prototype.getExpensesMonth = function (){
       return Math.ceil(targetAmmount.value / this.getBudget());        
       };
   AppData.prototype.reset = function(){
-    this.income = {};
-    this.addIncome = [];
-    this.expenses = {};
-    this.addExpenses = [];
-    this.deposit = false;
-    this.percentDeposot = 0;
-    this.moneyDeposit = 0;
-    this.budget = 0;
-    this.budgetDay = 0;
-    this.budgetMonth = 0;
-    this.expenseMonth = 0;
-    this.incomeMonth = 0;
-    incomeAdd.disabled = false;
-    expensesAdd.disabled = false;
-    let input = document.querySelectorAll("input");
-
-    input.forEach(function(item) {
-        item.value = '';
-        cancel.style.display = "none";
-        start.style.display = "inline"; 
-});
+     let deleteText = document.querySelectorAll("[type=text]");
+            deleteText.forEach(function(items){
+          
+          depositCheck.checked = false;
+          periodAmount.textContent = "1";
+          periodSelect.value = "1";
+         items.disabled = false;
+          items.value = '';
+     });
+     budgetDayValue.disabled = true;
+        budgetMonthValue.disabled = true;
+        expensesMonthValue.disabled = true;
+        additionalIncomeValue.disabled = true;
+        additionalExpensesValue.disabled = true;
+        incomePeriodValue.disabled = true;
+        targetMonthValue.disabled = true;
+        start.style.display = '';
+    cancel.style.display = '';
+    
+    start.disabled = true;
   };
  AppData.prototype.calcSavedMoney= function(){
       return this.budgetMonth * periodSelect.value;
