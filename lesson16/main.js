@@ -64,7 +64,6 @@ start() {
     this.getAddIncome();
     this.getInfoDeposit();
     this.getBudget();
-    this.getTargetMonth();
     this.showResult();
     start.style.display = 'none';
     cancel.style.display = 'block';
@@ -225,25 +224,7 @@ start() {
           this.deposit = false;
            depositBank.removeEventListener("change", this.changePercent);
         }
-        depositPercent.addEventListener('change', () => {
-				if (!isNumber(depositPercent.value) || depositPercent.value < 0 || depositPercent.value > 100) {
-            start.disabled = true;
-            depositPercent.value = "";
-            depositAmount.value = "";
-              alert('Ведите корректные данные по процентам!');
-              return;
-				       
-		  	}else if (isNumber(depositAmount.value)){
-                  start.disabled = true;
-                  depositPercent.value = "";
-                  depositAmount.value = "";
-              alert('Ведите корректные данные по процентам!');
-              return;
-				      
-			}else{
-        start.disabled = false;
-      }
-		});
+       
       }
        getBudget() {
             const monthDeposit = this.moneyDeposit * (this.percentDeposit / 100);
@@ -302,10 +283,10 @@ start() {
                 depositBank.style.display = 'none';
                 depositAmount.style.display = 'none';
                 depositPercent.style.display = 'none';
-                depositCheck.checked = !depositCheck.checked;
+                
 		}	
 
-              
+             
     } 
       
 eventListeners () {
@@ -318,9 +299,31 @@ eventListeners () {
     cancel.addEventListener('click', this.reset.bind(this));
     periodSelect.addEventListener("input", function(event){
     periodAmount.textContent = periodSelect.value;
+    
  });
   depositCheck.addEventListener("change", this.depositHandler.bind(this));
- }
+ 
+  depositPercent.addEventListener("change", () => {
+				if (!isNumber(depositPercent.value) || depositPercent.value < 0 || depositPercent.value > 100) {
+            start.disabled = true;
+            depositPercent.value = "";
+            depositAmount.value = "";
+              alert("Ведите корректные данные по процентам!");
+              return;
+				       
+		  	}else if (!isNumber(depositAmount.value)){
+                  start.disabled = true;
+                  depositPercent.value = "";
+                  depositAmount.value = "";
+              alert("Ведите корректные данные!");
+              return;
+				      
+			}else{
+        start.disabled = false;
+      }
+    
+		});
+  }
 }
 
 const appData = new AppData();
