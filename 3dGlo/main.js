@@ -115,5 +115,5 @@ window.addEventListener('DOMContentLoaded', () => {
    
 
 });
-window.addEventListener('click');
-
+const b = 21;
+console.log(b);
