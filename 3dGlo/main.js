@@ -1,7 +1,7 @@
 /* eslint-disable no-trailing-spaces */
+
 window.addEventListener('DOMContentLoaded', () => {
-
-
+    'use strict';
     //timer
     function countTimer(deadline) {
         const timeHours = document.querySelector('#timer-hours'),
@@ -35,9 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }
             if (timer.hours < 0) {
                 timeHours.textContent = 0;
-            } if (timer.minutes < 0) {
                 timeMinute.textContent = 0;
-            } if (timer.seconds < 0) {
                 timeSeconds.textContent = 0;
             }
             if (timer.timeReamning > 0) {
@@ -46,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
         };
         updateClock();
     }
-    countTimer('2 july 2020');
+    countTimer('1 july 2020');
     //menu
     
     const toggleMenu = () => {
@@ -55,10 +53,6 @@ window.addEventListener('DOMContentLoaded', () => {
             menu = document.querySelector('menu'),
             closeBtn = document.querySelector('.close-btn'),
             menuItem = document.querySelectorAll('ul>li');
-        // document.addEventListener('click', event => {
-            
-        //     if (!btnMenu.contains(event.target)) btnMenu.style.display = 'block';
-        // });
         const handlerMenu = () => {
             menu.classList.toggle('active-menu');
         };
@@ -116,26 +110,10 @@ window.addEventListener('DOMContentLoaded', () => {
             });
            
         });
-        
-        // document.querySelectorAll('.popup-btn').addEventListener('click', () => {
-        //     const popup = document.querySelector('popup');
-            
-        //     let movePopup;
-        //     let count = 0;
-        //     const movePopupBlock = () => {
-        //         movePopup = requestAnimationFrame(movePopupBlock);
-        //         count++;
-        //         if (count < 500) {
-        //             popup.style.left = count + 'px';
-        //         } else if (count < 700) {
-        //             cancelAnimationFrame(movePopup);
-        //         }
-        //     };
-        //     movePopupBlock();
-        // });
     };
     togglePopUp();
    
 
 });
+window.addEventListener('click');
 
