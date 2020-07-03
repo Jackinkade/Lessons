@@ -49,6 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     const toggleMenu = () => {
         const menu = document.querySelector('menu');
+        
         const handlerMenu = () => {
             menu.classList.toggle('active-menu');
         };
@@ -57,7 +58,11 @@ window.addEventListener('DOMContentLoaded', () => {
             target = target.closest('.menu') || target.closest('menu ul>li') || target.closest('.close-btn');
             if (target) {
                 handlerMenu();
+            } else if (!target) {
+                menu.classList.remove('active-menu'); 
             }
+            
+
         });
        
     };
@@ -107,8 +112,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
         popup.addEventListener('click', event => {
             let target  = event.target;
-           
-
             if (target.classList.contains('popup-close')) {
                 popup.style.display = 'none';
             } else {
@@ -149,11 +152,8 @@ window.addEventListener('DOMContentLoaded', () => {
                     if (item === target) {
                         toggleTabContent(i);//передает индекс элемента
                     }
-                });
-               
-            }
-             
-            
+                });   
+            } 
         });
     };
 
@@ -162,4 +162,3 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 const b = 21;
 console.log(b);
-
