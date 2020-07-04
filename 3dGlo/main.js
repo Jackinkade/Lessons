@@ -164,7 +164,7 @@ window.addEventListener('DOMContentLoaded', () => {
             //dot = document.querySelectorAll('.dot'),
             slider = document.querySelector('.portfolio-content'),
             newdot = document.querySelector('.portfolio-dots');
-
+        const dot = [];
         let currentSlide = 0,
             interval;
 
@@ -235,7 +235,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 startSlide();
             }
         });
-        const dot = [];
+       
         const createDots = () => {
             for (let i = 0; i < slide.length; i++) {
                 dot[i] = document.createElement('li');
