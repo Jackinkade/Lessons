@@ -88,15 +88,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 // popup.style.display = 'block';
                 popup.style.opacity = count += 0.155;
                 popupContent.style.left = count1 * 2 + 'px';
-                // 1 - Math.sin(Math.acos(count1));
-            // if (count < 600) {
-            //     popup.style.display = 'block';
-            //     popupContent.style.left = count * 2 + 'px';
             } else {
                 cancelAnimationFrame(popupanimate);
             }
         };
-        // popupanimate = requestAnimationFrame(openPopup);
+
         
         popupBtn.forEach(elem => {
             elem.addEventListener('click', () => {
@@ -160,8 +156,6 @@ window.addEventListener('DOMContentLoaded', () => {
     tabs();
     const slider = () => {
         const slide = document.querySelectorAll('.portfolio-item'),
-            //  btn = document.querySelectorAll('.portfolio-btn'),
-            //dot = document.querySelectorAll('.dot'),
             slider = document.querySelector('.portfolio-content'),
             newdot = document.querySelector('.portfolio-dots');
         const dot = [];
