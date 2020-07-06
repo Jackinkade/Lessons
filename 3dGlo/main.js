@@ -77,11 +77,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const openPopup = () => {
             const popupanimate = requestAnimationFrame(openPopup);
-            // count++;
+          
             count1 += 10;
             popup.style.display = 'block';
             if (popup.style.opacity < 5) {
-                // popup.style.display = 'block';
+            
               
                 popup.style.opacity = count += 0.155;
                 popupContent.style.left = count1 * 2 + 'px';
