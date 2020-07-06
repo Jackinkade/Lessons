@@ -69,29 +69,24 @@ window.addEventListener('DOMContentLoaded', () => {
         const popup = document.querySelector('.popup'),
             popupBtn = document.querySelectorAll('.popup-btn'),
             popupContent = document.querySelector('.popup-content');
-        // let count = 0;
-        // let popupanimate;
         let count = 0,
             count1 = 100;
 
         const openPopup = () => {
             const popupanimate = requestAnimationFrame(openPopup);
-            // count++;
+     
             count1 += 10;
             popup.style.display = 'block';
             if (popup.style.opacity < 5) {
-                // popup.style.display = 'block';
+              
                 popup.style.opacity = count += 0.155;
                 popupContent.style.left = count1 * 2 + 'px';
-                // 1 - Math.sin(Math.acos(count1));
-            // if (count < 600) {
-            //     popup.style.display = 'block';
-            //     popupContent.style.left = count * 2 + 'px';
+     
             } else {
                 cancelAnimationFrame(popupanimate);
             }
         };
-        // popupanimate = requestAnimationFrame(openPopup);
+      
         
         popupBtn.forEach(elem => {
             elem.addEventListener('click', () => {
@@ -160,6 +155,5 @@ window.addEventListener('DOMContentLoaded', () => {
     tabs();
 
 });
-const b = 21;
-console.log(b);
+
 
