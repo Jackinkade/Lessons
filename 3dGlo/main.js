@@ -74,18 +74,17 @@ window.addEventListener('DOMContentLoaded', () => {
         const popup = document.querySelector('.popup'),
             popupBtn = document.querySelectorAll('.popup-btn'),
             popupContent = document.querySelector('.popup-content');
-        // let count = 0;
-        // let popupanimate;
+
         let count = 0,
             count1 = 100;
 
         const openPopup = () => {
             const popupanimate = requestAnimationFrame(openPopup);
-            // count++;
+          
             count1 += 10;
             popup.style.display = 'block';
             if (popup.style.opacity < 5) {
-                // popup.style.display = 'block';
+                
                 popup.style.opacity = count += 0.155;
                 popupContent.style.left = count1 * 2 + 'px';
             } else {
@@ -129,7 +128,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const toggleTabContent = index => {
             for (let i = 0; i < tabContent.length; i++) {
-                if (index === i) { //index = 1
+                if (index === i) { 
                     tab[i].classList.add('active');
                     tabContent[i].classList.remove('d-none');//Отображает элемент котрый выбран И||Э||Ф
                 } else {
@@ -243,5 +242,5 @@ window.addEventListener('DOMContentLoaded', () => {
     
     slider();
 });
-const b = 21;
-console.log(b);
+
+
