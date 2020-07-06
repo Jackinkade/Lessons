@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
         };
         btnMenu.addEventListener('click', handlerMenu);
         closeBtn.addEventListener('click', handlerMenu);
-        // eslint-disable-next-line arrow-parens
+       
         menuItem.forEach((elem) => elem.addEventListener('click', handlerMenu));
        
     };
@@ -71,8 +71,7 @@ window.addEventListener('DOMContentLoaded', () => {
             popupBtn = document.querySelectorAll('.popup-btn'),
             popupClose = document.querySelector('.popup-close'),
             popupContent = document.querySelector('.popup-content');
-        // let count = 0;
-        // let popupanimate;
+      
         let count = 0,
             count1 = 100;
 
@@ -86,15 +85,12 @@ window.addEventListener('DOMContentLoaded', () => {
               
                 popup.style.opacity = count += 0.155;
                 popupContent.style.left = count1 * 2 + 'px';
-                // 1 - Math.sin(Math.acos(count1));
-            // if (count < 600) {
-            //     popup.style.display = 'block';
-            //     popupContent.style.left = count * 2 + 'px';
+          
             } else {
                 cancelAnimationFrame(popupanimate);
             }
         };
-        // popupanimate = requestAnimationFrame(openPopup);
+       
         
         popupBtn.forEach(elem => {
             elem.addEventListener('click', () => {
