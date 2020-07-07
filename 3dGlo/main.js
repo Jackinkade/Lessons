@@ -241,6 +241,34 @@ window.addEventListener('DOMContentLoaded', () => {
     };
     
     slider();
+    // меняем фото 
+    const changePhoto = () => {
+        const commandPhoto = document.querySelectorAll('.command__photo');
+        commandPhoto.forEach(item => {
+            let showPhoto;
+
+            item.addEventListener('mouseenter', event => { //mouseover work too
+                showPhoto = event.target.src;
+                event.target.src = event.target.dataset.img;
+            });
+
+            item.addEventListener('mouseleave', event => {
+                event.target.src = showPhoto;
+            });
+        });
+    };
+    changePhoto();
+    //ввод только чисел
+    const deleteWord = () => {
+        const calcItem = document.querySelectorAll('.calc-item');
+        calcItem.forEach(check => {
+            check.addEventListener('input', () => {
+                check.value = check.value.replace(/[^0-9]/, '');
+            });
+        });
+    };
+    deleteWord();
+        
 });
 
 
