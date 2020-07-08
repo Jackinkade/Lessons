@@ -271,52 +271,62 @@ window.addEventListener('DOMContentLoaded', () => {
     deleteWord();
 
     // калькулятор 
-    const calc = (price = 100) => {
+    // калькулятор
+    const calculator = (price = 100) => {
+        // ввод только чисел
+     
+        const calcItem = document.querySelectorAll('.calc-item');
+        calcItem.forEach(check => {
+            check.addEventListener('input', () => {
+                check.value = check.value.replace(/[^0-9]/, '');
+            });
+        });
+      
 
         const calcBlock = document.querySelector('.calc-block'),
             calcType = document.querySelector('.calc-type'),
             calcSquare = document.querySelector('.calc-square'),
-            calcDay = document.querySelector('.calc-day'),
             calcCount = document.querySelector('.calc-count'),
-            totalValue = document.querySelector('total');
+            calcDay = document.querySelector('.calc-day'),
+            totalValue = document.getElementById('total');
+
         const countSum = () => {
             let total = 0,
                 countValue = 1,
                 dayValue = 1;
-
             const typeValue = calcType.options[calcType.selectedIndex].value,
                 squareValue = +calcSquare.value;
-            
+
             if (calcCount.value > 1) {
-                countValue += (calcCount.value - 1) / 10;
+                countValue += (calcCount.value - 1)  / 10;
             }
 
             if (calcDay.value && calcDay.value < 5) {
                 dayValue *= 2;
-            } else if (calcDay.value && calcDay < 10) {
-                dayValue * 1.5;
+            } else if (calcDay.value && calcDay.value < 10) {
+                dayValue *= 1.5;
             }
-            
+
             if (typeValue && squareValue) {
                 total = price * typeValue * squareValue * countValue * dayValue;
             }
+
             totalValue.textContent = total;
-           
         };
 
         calcBlock.addEventListener('change', event => {
             const target = event.target;
-  
-            if (target === calcType || target === calcSquare || target === calcDay || target === calcCount) {
+            if (target === calcType || target === calcSquare || target === calcCount || target === calcDay) {
                 countSum();
             }
         });
 
-
     };
-    calc(100);
+    calculator(100);
         
 });
+
+
 
 
 
