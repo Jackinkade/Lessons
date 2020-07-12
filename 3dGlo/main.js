@@ -1,3 +1,5 @@
+
+
 /* eslint-disable no-trailing-spaces */
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -271,8 +273,8 @@ window.addEventListener('DOMContentLoaded', () => {
     deleteWord();
 
     // калькулятор 
-    // калькулятор
-    const calculator = (price = 100) => {
+
+    const calc = (price = 100) => {
         // ввод только чисел
      
         const calcItem = document.querySelectorAll('.calc-item');
@@ -283,22 +285,44 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       
 
-        const calcBlock = document.querySelector('.calc-block'),
-            calcType = document.querySelector('.calc-type'),
-            calcSquare = document.querySelector('.calc-square'),
-            calcCount = document.querySelector('.calc-count'),
-            calcDay = document.querySelector('.calc-day'),
-            totalValue = document.getElementById('total');
+       
+        const calcBlock = document.querySelector('.calc-block');
+        const calcType = document.querySelector('.calc-type');
+        const calcSquare = document.querySelector('.calc-square');
+        const calcCount = document.querySelector('.calc-count');
+        const calcDay = document.querySelector('.calc-day');
+        const totalValue = document.querySelector('#total');
+
+        let intervlId;
+        const renderTotal = total => {
+            let startTotal = 0;
+      
+            clearInterval(intervlId);
+
+            if (calcType.options[calcType.selectedIndex] === 0) {
+                clearInterval(intervlId);
+                startTotal = 0;
+            }
+      
+            intervlId = setInterval(() => {
+                startTotal += total.toString().length;        
+                totalValue.textContent = startTotal;
+                if (startTotal >= total) {
+                    totalValue.textContent = total;
+                    clearInterval(intervlId);
+                }
+            }, 10);
+        };
 
         const countSum = () => {
-            let total = 0,
-                countValue = 1,
-                dayValue = 1;
-            const typeValue = calcType.options[calcType.selectedIndex].value,
-                squareValue = +calcSquare.value;
-
+            let total = 0;
+            let countValue = 1;
+            let dayValue = 1;
+            const typeValue = calcType.options[calcType.selectedIndex].value;
+            const squareValue = +calcSquare.value;
+      
             if (calcCount.value > 1) {
-                countValue += (calcCount.value - 1)  / 10;
+                countValue += (calcCount.value - 1) / 10;
             }
 
             if (calcDay.value && calcDay.value < 5) {
@@ -309,26 +333,113 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if (typeValue && squareValue) {
                 total = price * typeValue * squareValue * countValue * dayValue;
+        
             }
-
-            totalValue.textContent = total;
+            renderTotal(total);
         };
 
-        calcBlock.addEventListener('change', event => {
-            const target = event.target;
-            if (target === calcType || target === calcSquare || target === calcCount || target === calcDay) {
+
+
+        calcBlock.addEventListener('change', evt => {
+            const target = evt.target;
+
+            if (target.matches('select') || target.matches('input')) {
                 countSum();
             }
+
         });
+    };
+
+    calc(100);
+    //26 урок 
+    
+    const sendForm = () => {
+
+        const checkInput = () => {
+            const allForms = document.querySelectorAll('form');
+            allForms.forEach(form => {
+                form.querySelectorAll('input').forEach(elem => {
+                    elem.addEventListener('input', event => {
+                    //в поля с номером телефона можно ввести только цифры и знак “+”
+                        // let message = document.getElementById('form2-message');
+                        if (event.target.classList.contains('form-phone')) {
+                            elem.value = elem.value.replace(/^[^+\d]*(\+|\d)|\D/g, '$1');
+                            //console.log(elem.value);
+                            
+                            // Запретить ввод любых символов в поле "Ваше имя" и "Ваше сообщение", кроме Кириллицы и пробелов!
+                        } 
+                        if (!event.target.classList.contains('form-email')) { 
+                            elem.value = elem.value.replace(/[^а-яё\s]/ig, '');//'form-name' && 'form2-message'' запретят email
+                        // } else (event.target.classList.contains('form-email')) {
+                        //     elem.value = elem.value.replace(/[^а-яё\s]/ig, '');
+                        }
+                        if (event.target.classList.contains('form-email')) { 
+                            elem.value = elem.value.replace(/[^-_a-zA-Z\d.@]/ig, '');
+                        }
+                    });
+                });
+            });
+        };
+        checkInput();
+        
+        const errorMessage = 'Что-то пошло не так...',
+            loadMessage = 'Загрузка...',
+            successMessage = 'Спасибо! Мы скоро свяжемся с Вами!';
+        const body = {};
+        const allForms = document.querySelectorAll('form');
+        const postData = (body, outputData, errorData) => {
+
+            const request = new XMLHttpRequest();
+            request.addEventListener('readystatechange', () => {
+                if (request.readyState !== 4) {
+                    return;
+                }
+                if (request.status === 200) {
+                    outputData();
+                } else {
+                    errorData(request.status);
+                }
+            });
+            request.open('POST', './server.php');
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send(JSON.stringify(body));
+        };
+
+        allForms.forEach(form => {
+            const statusMessage = document.createElement('div');
+            statusMessage.style.cssText = 'font-size: 2rem';
+
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+                form.appendChild(statusMessage);
+                statusMessage.textContent = loadMessage;
+
+                const formData = new FormData(form);
+                form.querySelectorAll('input').forEach(elem => {
+                    elem.value = '';
+                });
+
+                formData.forEach((val, key) => {
+                    body[key] = val;
+                });
+                
+                postData(body, 
+                    () => {
+                        statusMessage.textContent = successMessage;
+                    }, 
+                    error => {
+                        statusMessage.textContent = errorMessage;
+                        console.log(error);
+                    });
+
+            });
+        });
+       
 
     };
-    calculator(100);
-        
+    sendForm();
+  
+  
+
 });
-
-
-
-
-
-
 
