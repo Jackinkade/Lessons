@@ -358,13 +358,21 @@ window.addEventListener('DOMContentLoaded', () => {
             successMessage = 'Спасибо! Мы скоро свяжемся с Вами!';
         const body = {};
         const allForms = document.querySelectorAll('form');
-        const postData = body => fetch('./server.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body),
-            mode: 'cors'
+        const postData = body => new Promise((resolve, reject) => {
+            const request = new XMLHttpRequest();
+            request.addEventListener('readystatechange', () => {
+                if (request.readyState !== 4) {
+                    return;
+                }
+                if (request.status === 200) {
+                    resolve();
+                } else {
+                    reject(request.status);
+                }
+            });
+            request.open('POST', './server.php');
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send(JSON.stringify(body));
         });
 
         const phoneMaxLengh = () => {
@@ -397,10 +405,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (target.name === 'user_email') {
                     target.value = target.value.replace(/[а-я ]/gi, '');
                 }
-                // if (target.placeholder === 'Номер телефона') {
-                
-
-                //}
+             
             });
             
             const statusMessage = document.createElement('div');
@@ -421,21 +426,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 });
                 const outputData = () => {
                     statusMessage.textContent = successMessage;
-                    form.reset();
+                    // form.reset();
                 };
 
                 const error = () => {
                     statusMessage.textContent = errorMessage;
-                    form.reject();
+                    //form.reject();
                 };
+               
                 postData(body)
-                    .then(response => {
-                        if (response.status !== 200) {
-                            throw 'error !!! ';
-                        }
-                        outputData();
-                    })
+                    .then(outputData)
                     .catch(error);
+
 
             });
         });
